@@ -1,0 +1,19 @@
+- name: gathering facts
+  hosts: webservers
+  tasks:
+  - debug:
+      msg: "{{ ansible_user }}@{{ ansible_host }}"
+
+- name: diplay facts
+  hosts: webservers
+  gather_facts: false
+  tasks:
+  - name: debug facts
+    debug: var=ansible_facts
+
+- name: display host variables
+  hosts: webservers
+  gather_facts: false
+  tasks:
+  - debug:
+      var=hostvars

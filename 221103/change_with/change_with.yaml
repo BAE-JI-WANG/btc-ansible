@@ -1,0 +1,10 @@
+- name: Play with changed_when
+  hosts: webservers
+  gather_facts: false
+  tasks:
+  - shell: "ls -l"
+    register: bass_result
+    changed_when: bass_result.rc != 2
+    
+  - shell: wall 'beep'
+    changed_when: false

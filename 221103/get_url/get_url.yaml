@@ -1,0 +1,22 @@
+- name: play for....
+  hosts: webservers
+  become: True
+  tasks:
+  - name: download file
+    get_url:
+      url: http://cdn.gethue.com/downloads/hue-4.10.0.tgz
+      dest: /tmp
+      mode: 0660
+    run_once: true
+  - name: unarchive downloaded files
+    unarchive:
+      src: /tmp/hue-4.10.0.tgz
+      dest: /home/ubuntu
+      remote_src: True
+      owner: ubuntu
+      group: ubuntu
+  - name: create link to hue
+    file:
+      src: /home/ubuntu/hue-4.10.0
+      dest: /home/ubuntu/hue
+      state: link

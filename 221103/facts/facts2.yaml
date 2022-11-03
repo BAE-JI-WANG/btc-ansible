@@ -1,0 +1,6 @@
+- name: display host variables
+  hosts: webservers
+  gather_facts: false
+  tasks:
+  - debug:
+      msg: "{{ hostvars[\"aws\"] | join(',') }}"

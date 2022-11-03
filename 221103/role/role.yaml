@@ -1,0 +1,12 @@
+- name: Play with LOL
+  hosts: webservers
+  roles:
+  - test_roles
+
+  tasks:
+  - name: tasks
+    shell: echo 'still busy'
+
+  post_tasks:
+    - name: post_tasks
+      shell: echo 'goodbye'

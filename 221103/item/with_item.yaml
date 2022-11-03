@@ -1,0 +1,10 @@
+- name: play with items
+  hosts: webservers
+  gather_facts: false
+  tasks:
+  - name: display items
+    debug:
+      msg: "{{ item }}"
+    with_items:
+      - "Hello"
+      - "World"

@@ -1,0 +1,8 @@
+- name: Play with failed_when
+  hosts: webservers
+  gather_facts: false
+  tasks:
+  - name: this command prints FAILED when it fails
+    command: /usr/bin/example=command -x -y -z
+    register: command_result
+    failed_when: "'FAILED' in command_result.msg"
