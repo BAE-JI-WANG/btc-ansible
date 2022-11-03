@@ -1,0 +1,15 @@
+- name: Install Java 
+  hosts: webservers 
+  tasks:
+  - name: Check if java is installed 
+    command: java -version 
+    register: java_result 
+    ignore_errors: True
+
+  - debug:
+      msg: "Failed - Java is not installed" 
+    when: java_result is failed
+  - debug:
+      msg: "Success - Java is installed {{ java_result.stdout }}" 
+    when: java_result is success
+  - debug: var=java_result

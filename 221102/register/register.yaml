@@ -1,0 +1,9 @@
+- name: test var register
+  hosts: webservers
+  vars: 
+    test: "Hello world"
+  tasks:
+  - name: capture output whoami cc
+    command: whoami
+    register: login
+  - debug: var=login

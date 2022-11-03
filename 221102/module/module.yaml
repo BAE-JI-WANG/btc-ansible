@@ -1,0 +1,10 @@
+- name: module
+  hosts: webservers
+  become: yes
+  vars:
+  tasks:
+  - name: "Mode 755"
+    file:
+      path: "/home/tmp"
+      mode: 0755
+      recurse: yes

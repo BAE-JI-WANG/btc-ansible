@@ -1,0 +1,25 @@
+- name: module
+  hosts: webservers
+  become: yes
+  vars:
+  tasks:
+  - name: "Mode 755"
+    file:
+      path: "/home/tmp"
+      mode: 0755
+      recurse: yes
+  - name: "delete tmp"
+    file:
+      path: "/home/tmp"
+      state: absent
+  - shell: "ls /home"
+    register: output
+  - debug: var=output["stdout"]
+  - stat:
+      path: "/Users/baejiwang/Documents/ansible/221102/module/delete.yaml"
+    register: st
+  - debug: var=st
+  - name: Check OS name
+    shell: uname -v
+    register: os_name
+  - debug: var=os_name["stdout"]
